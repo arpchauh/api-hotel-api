@@ -2,7 +2,7 @@
 
 const mongoose = require("mongoose");
 const assert = require("assert");
-const db_url = process.env.DB_URL;
+const db_url = process.env.DB_URL || 3000;
 
 //connection code
 mongoose
