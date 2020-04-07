@@ -32,7 +32,7 @@ require("../models/rooms_model");
 const Hotel = mongoose.model("hotel");
 
 router.get("/", (req, res) => {
-  Hotel.find()
+  Hotel.find({})
     .then(hotel => {
       res.json({
         hotels: hotel

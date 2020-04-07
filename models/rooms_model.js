@@ -27,4 +27,4 @@ const hotelSchema = new Schema({
   }
 });
 
-mongoose.model("hotel", hotelSchema);
+mongoose.model("hotel", hotelSchema, "hotels");

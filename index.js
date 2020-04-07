@@ -1,13 +1,13 @@
-//init code
-require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const cors = require("cors");
 const app = express();
-const port = process.env.PORT;
+const port = 3000;
 const database = require("./database");
+
+console.log(port);
 
 //middleware setup
 app.use(morgan("dev"));
@@ -15,6 +15,10 @@ app.use(cors());
 
 const rooms = require("./routes/rooms");
 //default routes
+
+app.get("/", (req, res) => {
+  res.render("Hello Working.......");
+});
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
