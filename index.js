@@ -15,13 +15,12 @@ app.use(cors());
 
 const rooms = require("./routes/rooms");
 //default routes
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
   res.render("Hello Working.......");
 });
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 app.use("/api/hotel", rooms);
 app.use("/uploads", express.static("uploads"));
