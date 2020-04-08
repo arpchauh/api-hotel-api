@@ -6,25 +6,25 @@ const Schema = mongoose.Schema;
 const hotelSchema = new Schema({
   image: {
     type: String,
-    required: true
+    required: true,
   },
 
   Room: {
     type: String,
-    required: true
+    required: true,
   },
   Price: {
     type: Number,
-    required: true
+    required: true,
   },
   Type: {
     type: String,
-    required: true
+    required: true,
   },
   Contact: {
     type: Number,
-    required: true
-  }
+    required: true,
+  },
 });
 
 mongoose.model("hotel", hotelSchema, "hotels");

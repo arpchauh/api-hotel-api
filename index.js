@@ -14,6 +14,7 @@ app.use(morgan("dev"));
 app.use(cors());
 
 const rooms = require("./routes/rooms");
+const registerUser = require("./routes/register");
 //default routes
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -23,9 +24,10 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/hotel", rooms);
+app.use("/user", registerUser);
 app.use("/uploads", express.static("uploads"));
 
 //start server
-app.listen(port, function() {
+app.listen(port, function () {
   console.log("Server running at port : " + port);
 });
