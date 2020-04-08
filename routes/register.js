@@ -64,4 +64,8 @@ router.delete("/:userId", (req, res, next) => {
     });
 });
 
+router.get("/user", (req, res, next) => {
+  User.find().exec().then().catch();
+});
+
 module.exports = router;
