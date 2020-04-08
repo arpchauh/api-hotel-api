@@ -8,7 +8,7 @@ require("../models/admin_model");
 const User = mongoose.model("register");
 
 router.post("/signup", (req, res, next) => {
-  User.find({ email: req.email.body })
+  User.find({ email: req.body.email })
     .exec()
     .then((user) => {
       if (user) {
