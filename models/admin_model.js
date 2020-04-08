@@ -16,6 +16,8 @@ const registerUser = new schema({
   email: {
     type: String,
     required: true,
+    unique: true,
+    match: /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/,
   },
   password: {
     type: String,
