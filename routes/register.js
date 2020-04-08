@@ -8,34 +8,44 @@ require("../models/admin_model");
 const User = mongoose.model("register");
 
 router.post("/signup", (req, res, next) => {
-  bcrypt.hash(req.body.password, 10, (err, hash) => {
-    if (err) {
-      return res.status(500).json({
-        error: err,
-      });
-    } else {
-      const user = new User({
-        _id: new mongoose.Types.ObjectId(),
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: hash,
-      });
-      user
-        .save()
-        .then((result) => {
-          res.status(201).json({
-            message: "Successfuly Registered",
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-          res.status(500).json({
-            error: err,
-          });
+  User.find({ email: req.email.body })
+    .exec()
+    .then((user) => {
+      if (user) {
+        res.status(409).json({
+          message: "Email already exists",
         });
-    }
-  });
+      } else {
+        bcrypt.hash(req.body.password, 10, (err, hash) => {
+          if (err) {
+            return res.status(500).json({
+              error: err,
+            });
+          } else {
+            const user = new User({
+              _id: new mongoose.Types.ObjectId(),
+              firstName: req.body.firstName,
+              lastName: req.body.lastName,
+              email: req.body.email,
+              password: hash,
+            });
+            user
+              .save()
+              .then((result) => {
+                res.status(201).json({
+                  message: "Successfuly Registered",
+                });
+              })
+              .catch((err) => {
+                console.log(err);
+                res.status(500).json({
+                  error: err,
+                });
+              });
+          }
+        });
+      }
+    });
 });
 
 module.exports = router;
