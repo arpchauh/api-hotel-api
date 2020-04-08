@@ -49,7 +49,7 @@ router.post("/signup", (req, res, next) => {
 });
 
 router.delete("/:userId", (req, res, next) => {
-  User.findByIdAndDelete({ _id: req.params.id })
+  User.remove({ _id: req.params.userId })
     .exec()
     .then((result) => {
       res.status(200).json({
